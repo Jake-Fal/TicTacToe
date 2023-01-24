@@ -1,16 +1,18 @@
 ﻿using System;
+using static GameBoard;
 // Jake Falagrady, Emma Engstrom, Michael Chase, Cameron Wilson 
 namespace TicTacToe
 {
     class Program
     {
+
         // main driver class
         static void Main(string[] args)
         {
             // welcome users
             Console.WriteLine("Welcome to Tic-Tac-Toe");
             // initialize array 
-            char[] board = new char[" "," "," "," "," "," "," "," "," "];
+            char[] board = new char[] { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
             // loop through 9 guesses
             for (int i = 0; i < 8; i++)
             {
@@ -19,55 +21,54 @@ namespace TicTacToe
                 {
                     // let player one guess a square, determine the square is empty, if so, mark with an 'X'
                     Console.WriteLine("Player 1, it's your turn! Guess a number 1-9 (representing the tic-tac-toe squares): ");
-                    temp = parse.Int(Console.ReadLine());
-                    if board[temp] != "X" && board[i] != "O" {
-                    board[temp] = "X";
-                }
-                   else
+                    int temp = Int32.Parse(Console.ReadLine());
+                    if ((board[temp] != 'X') && (board[i] != 'O')) {
+                        board[temp] = 'X';
+                    }
+                    else
                     {
-                // if the square is marked, decrement the counter to reset the guess
-                Console.WriteLine("Sorry that square is already marked with " + board[i]);
-                i = i - 1;
+                        // if the square is marked, decrement the counter to reset the guess
+                        Console.WriteLine("Sorry that square is already marked with " + board[i]);
+                        i = i - 1;
                     }
 
-                    }
+                }
                 else
                 {
                     // player two guesses, check square, mark sqaure with 'O'
                     Console.WriteLine("Player 2, it's your turn! Guess a number 1-9 (representing the tic-tac-toe squares): ");
-                    temp = parse.Int(Console.ReadLine());
-                       if board[temp] != "X" && board[i] != "O" {
-                    board[temp] = "O";
-                }
-                  else
+                    int temp = Int32.Parse(Console.ReadLine());
+                    if (board[temp] != 'X' && board[i] != 'O') {
+                        board[temp] = 'O';
+                    }
+                    else
                     {
-                // if square is filled, notify user and decrement counter
-                Console.WriteLine("Sorry that square is already marked with " + board[i]);
-                i = i - 1 
+                        // if square is filled, notify user and decrement counter
+                        Console.WriteLine("Sorry that square is already marked with " + board[i]);
+                        i = i - 1;
                     }
 
 
-            }
-            // create instance of other class
-            gameBoard = new GameBoard(board);
+                }
+                // create instance of other class
 
-            // call the display board method
-            gameBoard.displayBoard();
-                
-            // check the string returned by checkWinner() and display to user 
-            string winString = gameBoard.checkWinner();
-                if winString != "No winner yet"{
-                Console.WriteLine(winString);
-                        }
+                // call the display board method
+                GameBoard.displayBoard();
+
+                // check the string returned by checkWinner() and display to user 
+                string winString = GameBoard.checkWinner();
+                if (winString != "No winner yet") {
+                    Console.WriteLine(winString);
+                }
                 else
                 {
                     break;
                 }
 
-                }
+            }
 
             // thank user and exit program
-            Console.WriteLine("Thanks for playing!")
+            Console.WriteLine("Thanks for playing!");
 
     }
 }

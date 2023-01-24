@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Linq;
+using static Program;
 
 public class GameBoard
 {
-	public GameBoard(int[] newBoard) // constructor
+	public GameBoard(char[] newBoard) // constructor
 	{
-		int[] board = newBoard;
+		char[] board = newBoard;
 	}
 
-	public void displayBoard()
+	public static void displayBoard()
     {
 		Console.WriteLine('     |     |     ');
 		Console.WriteLine('  {0}  |  {1}  |  {2}', board[0], board[1], board[2]);
@@ -22,7 +23,7 @@ public class GameBoard
 		Console.WriteLine('     |     |     ');
 	}
 
-	public int checkWinner()
+	public static string checkWinner()
     {
 		char = winner;
 		
