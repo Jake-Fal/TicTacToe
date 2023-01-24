@@ -48,11 +48,14 @@ namespace TicTacToe
 
 
             }
+            // create instance of other class
+            gameBoard = new GameBoard(board);
+
             // call the display board method
-            displayBoard();
+            gameBoard.displayBoard();
                 
             // check the string returned by checkWinner() and display to user 
-            string winString = checkWinner();
+            string winString = gameBoard.checkWinner();
                 if winString != "No winner yet"{
                 Console.WriteLine(winString);
                         }
