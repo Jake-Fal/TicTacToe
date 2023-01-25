@@ -14,7 +14,7 @@ namespace TicTacToe
             // initialize array 
             char[] board = new char[] { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
             // loop through 9 guesses
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 9; i++)
             {
                 // even numbers are player 1's guesses
                 if (i % 2 == 0)
@@ -22,8 +22,13 @@ namespace TicTacToe
                     // let player one guess a square, determine the square is empty, if so, mark with an 'X'
                     Console.WriteLine("Player 1, it's your turn! Guess a number 1-9 (representing the tic-tac-toe squares): ");
                     int temp = Int32.Parse(Console.ReadLine());
-                    if ((board[temp] != 'X') && (board[i] != 'O')) {
-                        board[temp] = 'X';
+                    while (temp < 1 || temp > 9)
+                    {
+                        Console.WriteLine("Number must be between 1-9. Guess again: ");
+                        temp = Int32.Parse(Console.ReadLine());
+                    }
+                    if ((board[temp-1] != 'X') && (board[temp -1] != 'O')) {
+                        board[temp-1] = 'X';
                     }
                     else
                     {
@@ -38,33 +43,34 @@ namespace TicTacToe
                     // player two guesses, check square, mark sqaure with 'O'
                     Console.WriteLine("Player 2, it's your turn! Guess a number 1-9 (representing the tic-tac-toe squares): ");
                     int temp = Int32.Parse(Console.ReadLine());
-                    if (board[temp] != 'X' && board[i] != 'O') {
-                        board[temp] = 'O';
+                    while (temp < 1 || temp > 9)
+                    {
+                        Console.WriteLine("Number must be between 1-9. Guess again: ");
+                        temp = Int32.Parse(Console.ReadLine());
+                    }
+                    if (board[temp-1] != 'X' && board[temp-1] != 'O') {
+                        board[temp-1] = 'O';
                     }
                     else
                     {
                         // if square is filled, notify user and decrement counter
-                        Console.WriteLine("Sorry that square is already marked with " + board[i]);
+                        Console.WriteLine("Sorry that square is already marked with " + board[temp-1]);
                         i = i - 1;
                     }
 
 
                 }
                 // create instance of other class
-
+                GameBoard myBoard = new GameBoard(board);
                 // call the display board method
-                GameBoard.displayBoard();
+                myBoard.displayBoard();
 
                 // check the string returned by checkWinner() and display to user 
-                string winString = GameBoard.checkWinner();
+                string winString = myBoard.checkWinner();
                 if (winString != "No winner yet") {
                     Console.WriteLine(winString);
-                }
-                else
-                {
                     break;
                 }
-
             }
 
             // thank user and exit program

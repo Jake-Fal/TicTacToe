@@ -1,31 +1,29 @@
 ﻿using System;
 using System.Linq;
-using static Program;
 
 public class GameBoard
 {
+	public static char[] board;
 	public GameBoard(char[] newBoard) // constructor
 	{
-		char[] board = newBoard;
+		board = newBoard;
+	}
+	public void displayBoard()
+    {
+		Console.WriteLine("     |     |     ");
+		Console.WriteLine("  {0}  |  {1}  |  {2}", board[0], board[1], board[2]);
+		Console.WriteLine("_____|_____|_____");
+		Console.WriteLine("     |     |     ");
+		Console.WriteLine("  {0}  |  {1}  |  {2}", board[3], board[4], board[5]);
+		Console.WriteLine("_____|_____|_____");	   			 		   
+		Console.WriteLine("     |     |     ");	   			 		   
+		Console.WriteLine("  {0}  |  {1}  |  {2}", board[6], board[7], board[8]);
+		Console.WriteLine("     |     |     ");
 	}
 
-	public static void displayBoard()
+	public string checkWinner()
     {
-		Console.WriteLine('     |     |     ');
-		Console.WriteLine('  {0}  |  {1}  |  {2}', board[0], board[1], board[2]);
-		Console.WriteLine('_____|_____|_____');
-		Console.WriteLine('     |     |     ');
-		Console.WriteLine('\t|\t|\t');
-		Console.WriteLine('  {0}  |  {1}  |  {2}', board[3], board[4], board[5]);
-		Console.WriteLine('_____|_____|_____');	   			 		   
-		Console.WriteLine('     |     |     ');	   			 		   
-		Console.WriteLine('  {0}  |  {1}  |  {2}', board[6], board[7], board[8]);
-		Console.WriteLine('     |     |     ');
-	}
-
-	public static string checkWinner()
-    {
-		char = winner;
+		char winner;
 		
 		if (board[0] == board[1] && board[0] == board[2]) // check for 1st horizontal row
 		{
@@ -61,23 +59,23 @@ public class GameBoard
 		}
 		else // if no winner has been found
         {
-			if (board.AsQueryable().Any(val == ' ')) // there are still spaces on the board
+			if (board.Contains(' ')) // there are still spaces on the board
             {
-				winner = "No winner yet";
+				return "No winner yet";
             }
 			else // no more spaces
             {
-				winner = "Cat's scratch";
+				return "Cat's scratch";
             }
         }
-		if (winner == "X")
+		if (winner == 'X')
         {
 			return "Player 1 won";
         }
-		else if (winner == "O")
+		else if (winner == 'O')
         {
 			return "Player 2 won";
         }
-	
+		return "No winner yet";
 	}
 }
